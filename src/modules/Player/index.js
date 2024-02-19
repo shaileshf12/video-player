@@ -45,25 +45,28 @@ const StyledDescription = styled.div`
 `;
 
 function Player({ video, setCurrentVideo }) {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const videoRef = useRef();
 
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.play();
     }
-    setIsPlaying(true);
   }, []);
+
+  console.log("isPlaying", isPlaying)
 
   const handleVideoClick = () => {
     if (videoRef.current) {
       if (isPlaying) {
         videoRef.current.pause();
+        setIsPlaying(false);
       } else {
         videoRef.current.play();
+        setIsPlaying(true);
       }
     }
-    setIsPlaying((prev) => !prev);
+    // setIsPlaying((prev) => !prev);
   };
 
   return (
